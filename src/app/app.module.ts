@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { FicheContactComponent } from './fiche-contact/fiche-contact.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponentComponent } from './main-component/main-component.component';
+import {TuiElementModule} from "@taiga-ui/cdk";
 
 
 @NgModule({
@@ -18,14 +19,15 @@ import { MainComponentComponent } from './main-component/main-component.componen
     HeaderComponent,
     MainComponentComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-      BrowserAnimationsModule,
-      TuiRootModule,
-      TuiDialogModule,
-      TuiAlertModule
-],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        TuiRootModule,
+        TuiDialogModule,
+        TuiAlertModule,
+        TuiElementModule
+    ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })
