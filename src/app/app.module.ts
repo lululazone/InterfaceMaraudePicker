@@ -32,42 +32,38 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-=======
     FicheContactComponent,
     HeaderComponent,
     MainComponentComponent,
     ItemComponent,
     LoginComponent,
     LoginPageComponent
->>>>>>> main
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        TuiLinkModule,
-        TuiDropdownModule,
-        TuiButtonModule,
-        TuiRootModule,
-        TuiDialogModule,
-        TuiAlertModule,
-        TuiElementModule,
-        TuiTablePaginationModule,
-        TuiForModule,
-        TuiSelectModule,
-        TuiInputCountModule,
-        TuiPaginationModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
+    TuiLinkModule,
+    TuiDropdownModule,
+    TuiButtonModule,
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule,
+    TuiElementModule,
+    TuiTablePaginationModule,
+    TuiForModule,
+    TuiSelectModule,
+    TuiInputCountModule,
+    TuiPaginationModule
+
+  ],
+
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
 })
