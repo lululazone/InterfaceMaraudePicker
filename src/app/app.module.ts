@@ -20,7 +20,9 @@ import { MainComponentComponent } from './main-component/main-component.componen
 import {TuiElementModule, TuiForModule} from "@taiga-ui/cdk";
 import {TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import { ItemComponent } from './item/item.component';
-import {TuiInputCountModule, TuiSelectModule} from "@taiga-ui/kit";
+import {TuiInputCountModule, TuiPaginationModule, TuiSelectModule} from "@taiga-ui/kit";
+import { LoginComponent } from './login/login.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import {TuiInputCountModule, TuiSelectModule} from "@taiga-ui/kit";
     FicheContactComponent,
     HeaderComponent,
     MainComponentComponent,
-    ItemComponent
+    ItemComponent,
+    LoginComponent,
+    LoginPageComponent
   ],
     imports: [
         BrowserModule,
@@ -45,7 +49,8 @@ import {TuiInputCountModule, TuiSelectModule} from "@taiga-ui/kit";
         TuiTablePaginationModule,
         TuiForModule,
         TuiSelectModule,
-        TuiInputCountModule
+        TuiInputCountModule,
+        TuiPaginationModule
     ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]

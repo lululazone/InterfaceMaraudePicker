@@ -9,12 +9,21 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponentComponent implements OnInit {
-  page = 1;
+  page = 0;
   size = 10;
   total = 237;
   open = false;
+  currentPage = 0;
 
   selectionned = "none";
+
+  displayedItems!: any[];
+
+  pageSize = 14;
+
+  numberPage = Math.round(this.total/this.pageSize);
+
+  activePadding = 2;
 
 
   readonly testForm = new FormGroup({
@@ -22,7 +31,7 @@ export class MainComponentComponent implements OnInit {
 
   });
 
-  itemList: Array<{name: string, added:boolean,quantity:number}> = [];
+  itemList: Array<{name: string, added:boolean,quantity:number,id:number}> = [];
 
 
   constructor(@Inject(TuiAlertService) private readonly alerts: TuiAlertService) {
@@ -48,15 +57,24 @@ export class MainComponentComponent implements OnInit {
   }
 
 
-  public initiateList(type:string): void{
-    for(let i = 0;i<180;i++ ){
-      let item = new ItemComponent();
-      item.name=type+" "+i;
-      item.added=false;
-      item.quantity=0;
+  public initiateList(type: string): void {
+    this.selectionned = type;
+    for (let i = 0; i < this.total; i++) {
+      let item = {
+        name: type + ' ' + i,
+        added: false,
+        quantity: 0,
+        id: i,
+      };
       this.itemList.push(item);
     }
+  }
 
+  onPageChange(page: number) {
+    const startIndex = (page) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.displayedItems = this.itemList.slice(startIndex, endIndex);
+    this.currentPage = page;
   }
 
 

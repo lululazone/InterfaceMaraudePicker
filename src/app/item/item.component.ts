@@ -12,6 +12,8 @@ export class ItemComponent implements OnInit {
   quantity=0;
 
   added = false;
+
+  id!:number;
   constructor() { }
 
   ngOnInit(): void {
