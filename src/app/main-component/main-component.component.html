@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px;
+    margin-top: 1%;
+  }
+
+
+  .center {
+    text-align: center;
+    margin-bottom: 100px;
+
+  }
+
+  .container{
+
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-family: "Artifakt Element Hair";
+    font-size: 50px;
+    color: darkblue;
+
+  }
+</style>
+<div class="container">
+  <div>
+    <div class="title">
+      <b>Liste d'Articles</b>
+    </div>
+    <div class="center">
+      <button
+        tuiButton
+        type="button"
+        iconRight="tuiIconChevronDown"
+        [tuiDropdown]="dropdownContent"
+        [tuiDropdownManual]="open"
+        (click)="onClick()"
+      >
+        Choose
+      </button>
+      <ng-template #dropdownContent>
+        <div class="dropdown" style="text-align: center;">
+          <button tuiButton (click)="initiateList('Aliments'); onPageChange(0)" style="margin-bottom: 10px; ">Aliments</button>
+        </div>
+        <div class="dropdown" style="text-align: center;"><button tuiButton (click)="initiateList('Hygiene')" >Hygiene</button></div>
+      </ng-template>
+    </div>
+
+    <div class="grid-container">
+      <li class="tui-list" *ngFor="let item of displayedItems">
+        <div>
+          <img src="assets/images/noimage.png" width="70%" height="50%" style="text-align: center">
+          <div>
+            <label style="margin-left: 18%">{{ item.name }}</label>
+          </div>
+          <div *ngIf="!item.added">
+            <tui-input-count #qte
+                             formControlName="testValue1"
+                             [min]="0"
+                             [max]="200"
+            >
+              Quantité
+              <input
+                tuiTextfield
+                placeholder="1.. 2.. 3.."
+              />
+            </tui-input-count>
+            <button tuiButton style="margin-left: 10%" (click)="onClickItem(item.name); item.added=true; item.quantity=$any(qte.value)" >Ajouter</button>
+          </div>
+          <div *ngIf="item.added">
+            <label>{{item.quantity}} {{item.name}} ajouté</label>
+            <button tuiButton style="margin-left: 10%" appearance="secondary-destructive" (click)="onClickItemRemove(item.name); item.added=false; item.quantity=0" >Enlever</button>
+          </div>
+        </div>
+      </li>
+    </div>
+
+
+
+
+</div>
+
+<footer>
+  <div style="display: flex; justify-content: center; padding-top: 50px ">
+    <a href="/login">Connection admin</a>
+    <tui-pagination
+      [length]="numberPage"
+      [index]="currentPage"
+      (indexChange)="onPageChange($event)"
+    ></tui-pagination>
+    <button tuiButton>Continuer</button>
+  </div>
+</footer>
+
+</div>

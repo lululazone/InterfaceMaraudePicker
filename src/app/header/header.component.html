@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<style>
+  .center {
+    margin: auto;
+    padding: 30px;
+    background-color: #3299BB;
+    display: flex; /* Utiliser Flexbox pour aligner les liens horizontalement */
+    justify-content: space-between; /* Espacer les liens avec un espace égal entre eux */
+    flex-wrap: wrap; /* Permettre aux liens de se mettre à la ligne si nécessaire */
+
+
+  }
+
+  .center a {
+    margin-right: 10%; /* Espacement horizontal entre les liens en pourcentage */
+    margin-bottom: 10px; /* Espacement vertical entre les liens */
+    color: white;
+    text-overline-color: black;
+
+  }
+
+  /* Pour le dernier lien de chaque ligne, annuler la marge droite */
+  .center a:last-child {
+    margin-right: 5%;
+  }
+
+  /* Pour les écrans plus petits, ajuster la largeur des liens pour les empiler verticalement */
+  @media (max-width: 768px) {
+    .center a {
+      width: 100%; /* Utiliser la largeur complète de la div parent pour les liens */
+      margin-right: 0;
+    }
+  }
+</style>
+<div class="center">
+
+  <a tuiLink href="https://www.ocdm31.fr/"  >SITE PRINCIPAL</a>
+  <a tuiLink href="/">LISTE D'ARTICLES</a>
+  <a tuiLink href="/about">FICHE CONTACT</a>
+
+
+</div>
