@@ -2,7 +2,7 @@
 <style>
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
     gap: 50px;
     margin-top: 1%;
   }
@@ -46,9 +46,9 @@
       </button>
       <ng-template #dropdownContent>
         <div class="dropdown" style="text-align: center;">
-          <button tuiButton (click)="initiateList('Aliments'); onPageChange(0)" style="margin-bottom: 10px; ">Aliments</button>
+          <button tuiButton (click)="initiateList('alimentaire'); onPageChange(0)" style="margin-bottom: 10px; ">Aliments</button>
         </div>
-        <div class="dropdown" style="text-align: center;"><button tuiButton (click)="initiateList('Hygiene')" >Hygiene</button></div>
+        <div class="dropdown" style="text-align: center;"><button tuiButton (click)="initiateList('hygiene');onPageChange(0)" >Hygiene</button></div>
       </ng-template>
     </div>
 

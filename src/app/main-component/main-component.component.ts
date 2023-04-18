@@ -2,16 +2,20 @@ import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core'
 import {ItemComponent} from "../item/item.component";
 import {TuiAlertService} from "@taiga-ui/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ArticleService} from "../services/article.service";
+import {IArticle} from "../models/article";
+import {Observable} from "rxjs";
+
 @Component({
   selector: 'app-main-component',
   templateUrl: './main-component.component.html',
   styleUrls: ['./main-component.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponentComponent implements OnInit {
+export class MainComponentComponent implements OnInit,IArticle {
   page = 0;
   size = 10;
-  total = 237;
+  total = 10;
   open = false;
   currentPage = 0;
 
@@ -31,12 +35,28 @@ export class MainComponentComponent implements OnInit {
 
   });
 
+  itemAvailableList: Array<{nom: string, image:string}> = [];
+  AlimentAvailableList: Array<{nom: string, image:string}> = [];
+
+  HygieneAvailableList: Array<{nom: string, image:string}> = [];
+
   itemList: Array<{name: string, added:boolean,quantity:number,id:number}> = [];
 
 
-  constructor(@Inject(TuiAlertService) private readonly alerts: TuiAlertService) {
+  constructor(@Inject(TuiAlertService) private readonly alerts: TuiAlertService, public articleService:ArticleService) {
+    this.articleService.findByCategory('alimentaire').subscribe((res: IArticle[]) => {
+        this.AlimentAvailableList=res;
+      }
+    )
+    this.articleService.findByCategory('hygiene').subscribe((res: IArticle[]) => {
+        this.HygieneAvailableList=res;
+      }
+    )
 
   }
+
+  nom!: string;
+  image!: string;
 
 
   ngOnInit(): void {
@@ -58,17 +78,31 @@ export class MainComponentComponent implements OnInit {
 
 
   public initiateList(type: string): void {
+    this.itemList = []
     this.selectionned = type;
-    for (let i = 0; i < this.total; i++) {
+    if(type=='alimentaire'){
+      this.itemAvailableList = this.AlimentAvailableList;
+    }
+    if(type=='hygiene'){
+      this.itemAvailableList = this.HygieneAvailableList;
+    }
+    for(let i = 0 ; i<this.itemAvailableList.length;i++){
       let item = {
-        name: type + ' ' + i,
+        name: this.itemAvailableList[i].nom,
         added: false,
         quantity: 0,
         id: i,
       };
       this.itemList.push(item);
     }
+    this.currentPage=0;
+
+    this.total = Math.floor(this.itemList.length/this.pageSize)
+
+    console.log(this.itemList)
+
   }
+
 
   onPageChange(page: number) {
     const startIndex = (page) * this.pageSize;
