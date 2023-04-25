@@ -1,1 +1,36 @@
-<p>login-page works!</p>
+<!DOCTYPE html>
+<h1>Connectez vous</h1>
+
+
+<style>
+  .formStyle {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-content: center;
+  }
+</style>
+<div style="text-align: center">
+<form class="formStyle" method="post">
+    <label>Nom d'utilisateur</label>
+    <tui-input formControlName="testValue">
+      Type an email
+      <input
+        tuiTextfield
+        type="email"
+      />
+    </tui-input>
+    <label>Mot de passe</label>
+    <tui-input-password
+      formControlName="testValue"
+      class="tui-space_top-2"
+    >
+      Type a password
+      <input
+        tuiTextfield
+        placeholder="Make it secure!"
+      />
+    </tui-input-password>
+    <button tuiButton>Se Connecter</button>
+</form>
+                                                   </div>

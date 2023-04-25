@@ -20,7 +20,13 @@ import { MainComponentComponent } from './main-component/main-component.componen
 import {TuiElementModule, TuiForModule} from "@taiga-ui/cdk";
 import {TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import { ItemComponent } from './item/item.component';
-import {TuiInputCountModule, TuiPaginationModule, TuiSelectModule} from "@taiga-ui/kit";
+import {
+  TuiInputCountModule,
+  TuiInputModule,
+  TuiInputPasswordModule,
+  TuiPaginationModule,
+  TuiSelectModule
+} from "@taiga-ui/kit";
 import { LoginPageComponent } from './login-page/login-page.component';
 
 
@@ -58,7 +64,9 @@ import { environment } from 'src/environments/environment';
     TuiForModule,
     TuiSelectModule,
     TuiInputCountModule,
-    TuiPaginationModule
+    TuiPaginationModule,
+    TuiInputPasswordModule,
+    TuiInputModule
 
   ],
 
