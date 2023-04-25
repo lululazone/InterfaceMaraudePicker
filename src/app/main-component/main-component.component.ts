@@ -5,6 +5,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ArticleService} from "../services/article.service";
 import {IArticle} from "../models/article";
 import {Observable} from "rxjs";
+import {TuiInputCountComponent} from "@taiga-ui/kit";
+import { Router } from '@angular/router';
+import {ItemListService} from "../services/item-list.service";
 
 @Component({
   selector: 'app-main-component',
@@ -29,10 +32,11 @@ export class MainComponentComponent implements OnInit,IArticle {
 
   activePadding = 2;
 
+  itemSelectedList: Array<{nom: string, qte:any}> = [];
+
 
   readonly testForm = new FormGroup({
     testValue1: new FormControl(10, Validators.required),
-
   });
 
   itemAvailableList: Array<{nom: string, image:string}> = [];
@@ -43,7 +47,7 @@ export class MainComponentComponent implements OnInit,IArticle {
   itemList: Array<{name: string, added:boolean,quantity:number,id:number}> = [];
 
 
-  constructor(@Inject(TuiAlertService) private readonly alerts: TuiAlertService, public articleService:ArticleService) {
+  constructor(@Inject(TuiAlertService) private readonly alerts: TuiAlertService, public articleService:ArticleService,private itemListService: ItemListService) {
     this.articleService.findByCategory('alimentaire').subscribe((res: IArticle[]) => {
         this.AlimentAvailableList=res;
       }
@@ -116,19 +120,40 @@ export class MainComponentComponent implements OnInit,IArticle {
     this.alerts
       .open(itemName+' enlevé :(', {label: 'Panier mis à jour !'})
       .subscribe();
+    //remove item from list
+    if(this.itemSelectedList.find((item)=>item.nom==itemName)){
+      this.itemSelectedList.find((item)=>item.nom==itemName)!.qte=0;
+      if(this.itemSelectedList.find((item)=>item.nom==itemName)!.qte==0){
+        this.itemSelectedList = this.itemSelectedList.filter((item)=>item.nom!=itemName);
+      }
+      console.log(this.itemSelectedList);
+      return;
+    }
+
   }
 
-  public onClickItem(itemName:string):void{
+  public onClickItem(itemName: string, qte: TuiInputCountComponent):void{
     this.alerts
       .open(itemName+' ajouté !', {label: 'Panier mis à jour !'})
       .subscribe();
-
-    console.log(this.testForm.value)
+    if(this.itemSelectedList.find((item)=>item.nom==itemName)){
+      this.itemSelectedList.find((item)=>item.nom==itemName)!.qte+=qte.value;
+      console.log(this.itemSelectedList);
+      return;
+    }
+    this.itemSelectedList.push({nom:itemName,qte:qte.value})
+    console.log(this.itemSelectedList);
   }
 
   public loadList(value:string){
     this.itemList = [];
     this.initiateList(value);
   }
+
+  public onClickContinue(){
+    this.itemListService.setProduct(this.itemSelectedList);
+  }
+
+
 
 }

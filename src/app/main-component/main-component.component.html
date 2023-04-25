@@ -71,7 +71,7 @@
                 placeholder="1.. 2.. 3.."
               />
             </tui-input-count>
-            <button tuiButton style="margin-left: 10%" (click)="onClickItem(item.name); item.added=true; item.quantity=$any(qte.value)" >Ajouter</button>
+            <button tuiButton style="margin-left: 10%" (click)="onClickItem(item.name,qte); item.added=true; item.quantity=$any(qte.value)" >Ajouter</button>
           </div>
           <div *ngIf="item.added">
             <label>{{item.quantity}} {{item.name}} ajouté</label>
@@ -94,8 +94,7 @@
       [index]="currentPage"
       (indexChange)="onPageChange($event)"
     ></tui-pagination>
-    <button tuiButton>Continuer</button>
+    <button tuiButton routerLink="/about" (click)="onClickContinue()" >Continuer</button>
   </div>
 </footer>
-
 </div>
