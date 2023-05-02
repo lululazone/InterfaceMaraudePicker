@@ -36,6 +36,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { environment } from 'src/environments/environment';
     TuiInputCountModule,
     TuiPaginationModule,
     TuiInputPasswordModule,
-    TuiInputModule
+    TuiInputModule,
+    ReactiveFormsModule
 
   ],
 

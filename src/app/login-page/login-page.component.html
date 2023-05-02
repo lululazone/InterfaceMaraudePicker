@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<h1>Connectez vous</h1>
+<h1 style="text-align: center">Connectez vous</h1>
 
 
 <style>
@@ -11,26 +11,34 @@
   }
 </style>
 <div style="text-align: center">
-<form class="formStyle" method="post">
-    <label>Nom d'utilisateur</label>
-    <tui-input formControlName="testValue">
-      Type an email
-      <input
-        tuiTextfield
-        type="email"
-      />
-    </tui-input>
-    <label>Mot de passe</label>
-    <tui-input-password
-      formControlName="testValue"
-      class="tui-space_top-2"
-    >
-      Type a password
-      <input
-        tuiTextfield
-        placeholder="Make it secure!"
-      />
-    </tui-input-password>
-    <button tuiButton>Se Connecter</button>
-</form>
-                                                   </div>
+  <div>
+    <form class="formStyle" method="post" style="display: inline-block" [formGroup]="testForm">
+        <label>Nom d'utilisateur</label>
+        <tui-input formControlName="username">
+          Votre nom d'utilisateur...
+          <input
+            tuiTextfield
+            type="text"
+          />
+        </tui-input>
+        <label>Mot de passe</label>
+        <tui-input-password
+          formControlName="password"
+          class="tui-space_top-2"
+        >
+          Tapez le mot de passe...
+          <input
+            tuiTextfield
+            placeholder="Votre mot de passe...!"
+          />
+        </tui-input-password>
+
+    </form>
+  </div>
+  <div>
+    <button tuiButton (click)="sendCredentials()" style="margin: 10px">Se Connecter</button>
+  </div>
+  <div>
+    <b style="color: red" >{{textError}}</b>
+  </div>
+</div>
