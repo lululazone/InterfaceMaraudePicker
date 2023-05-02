@@ -1,0 +1,18 @@
+<table>    
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>E-mail</th>
+            <th>Tel</th>
+            <th>Items</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clients; let index = index">
+            <td>{{ index+1 }}. {{ client.nom }} </td>    
+            <td>{{ client.email }}</td>
+            <td>{{ client.tel }}</td>
+            <td><p *ngFor="let item of client.items">{{ item }}</p></td>
+        </tr>
+    </tbody>
+</table>

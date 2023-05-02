@@ -17,8 +17,9 @@ import { AppComponent } from './app.component';
 import { FicheContactComponent } from './fiche-contact/fiche-contact.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponentComponent } from './main-component/main-component.component';
-import {TuiElementModule, TuiForModule} from "@taiga-ui/cdk";
+import {TuiElementModule, TuiForModule, TuiLetModule} from "@taiga-ui/cdk";
 import {TuiTablePaginationModule} from "@taiga-ui/addon-table";
+import { TuiTableModule } from "@taiga-ui/addon-table";
 import { ItemComponent } from './item/item.component';
 import {TuiInputCountModule, TuiPaginationModule, TuiSelectModule} from "@taiga-ui/kit";
 import { LoginComponent } from './login/login.component';
@@ -31,6 +32,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
+// import { PageAdminComponent } from './page-admin/page-admin.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { environment } from 'src/environments/environment';
     MainComponentComponent,
     ItemComponent,
     LoginComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    // PageAdminComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
@@ -58,10 +63,11 @@ import { environment } from 'src/environments/environment';
     TuiElementModule,
     TuiTablePaginationModule,
     TuiForModule,
+    TuiLetModule,
     TuiSelectModule,
     TuiInputCountModule,
-    TuiPaginationModule
-
+    TuiPaginationModule,
+    TuiTableModule,
   ],
 
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
