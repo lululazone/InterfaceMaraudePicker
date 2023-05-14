@@ -16,8 +16,9 @@ import { AppComponent } from './app.component';
 import { FicheContactComponent } from './fiche-contact/fiche-contact.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponentComponent } from './main-component/main-component.component';
-import {TuiElementModule, TuiForModule} from "@taiga-ui/cdk";
+import {TuiElementModule, TuiForModule, TuiLetModule} from "@taiga-ui/cdk";
 import {TuiTablePaginationModule} from "@taiga-ui/addon-table";
+import { TuiTableModule } from "@taiga-ui/addon-table";
 import { ItemComponent } from './item/item.component';
 import {
   TuiElasticContainerModule,
@@ -36,6 +37,10 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
+// import { PageAdminComponent } from './page-admin/page-admin.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { FormsModule } from "@angular/forms";
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
@@ -49,7 +54,15 @@ import {MailService} from "./services/mail.service";
     HeaderComponent,
     MainComponentComponent,
     ItemComponent,
+<<<<<<< HEAD
     LoginPageComponent
+=======
+    LoginComponent,
+    LoginPageComponent,
+    // PageAdminComponent,
+    AdminPageComponent,
+    UpdateUserComponent
+>>>>>>> origin/admin
   ],
   imports: [
     BrowserModule,
@@ -66,9 +79,11 @@ import {MailService} from "./services/mail.service";
     TuiElementModule,
     TuiTablePaginationModule,
     TuiForModule,
+    TuiLetModule,
     TuiSelectModule,
     TuiInputCountModule,
     TuiPaginationModule,
+<<<<<<< HEAD
     TuiInputPasswordModule,
     TuiInputModule,
     ReactiveFormsModule,
@@ -77,6 +92,10 @@ import {MailService} from "./services/mail.service";
     TuiExpandModule,
     FormsModule,
     HttpClientModule
+=======
+    TuiTableModule,
+    FormsModule
+>>>>>>> origin/admin
   ],
 
 
