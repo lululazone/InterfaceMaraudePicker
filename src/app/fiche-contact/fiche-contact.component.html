@@ -1,2 +1,88 @@
 
-<p>fiche-contact works!</p>
+<style>
+  div.form
+  {
+    display: block;
+    text-align: center;
+  }
+  form
+  {
+    margin-top: 5%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+
+  }
+  .elastic{
+    background-color: white;
+  }
+</style>
+
+
+<div>
+  <div class="form">
+
+    <form (ngSubmit)="onSubmit(); clicked=true" *ngIf="!isSend">
+      <h3 class="tui-form__header tui-form__header_margin-top_none">Informations de contact</h3>
+      <tui-input >
+        Votre nom
+        <input
+          tuiTextfield
+          type="text"
+          name="name"
+          [(ngModel)]="name"
+          required
+        />
+      </tui-input>
+      <tui-input>
+        Votre adresse mail !
+        <input
+          tuiTextfield
+          type="email"
+          name="email"
+          [(ngModel)]="mailSender"
+          required
+        />
+      </tui-input>
+      <tui-input>
+        Votre numero de telephone !
+        <input
+          tuiTextfield
+          type="number"
+          name="phone"
+          [(ngModel)]="phoneNumber"
+          required
+        />
+      </tui-input>
+      <h3 class="tui-form__header tui-form__header_margin-top_none" style="margin-top: 2%">Ce que vous donnez:</h3>
+      <div class="elastic">
+        <tui-elastic-container class="b-form tui-space_top-4">
+          <div
+            *ngFor="let item of items; let index = index"
+            class="wrapper"
+          >
+            <h3 class="title">
+              {{item.nom}}x {{item.qte}}
+              <button
+                tuiIconButton
+                appearance="flat"
+                size="s"
+                icon="tuiIconTrash"
+                shape="rounded"
+                title="Remove"
+                class="remove"
+                (click)="remove(index)"
+              ></button>
+            </h3>
+          </div>
+        </tui-elastic-container>
+      </div>
+      <button tuiButton style="padding-left: 20%; margin-top: 2%" type="submit" *ngIf="!clicked">Envoyer</button>
+    </form>
+    <div *ngIf="isSend">
+      <h2>Merci ! Votre panier a été envoyé ! On vous recontactera.</h2>
+    </div>
+  </div>
+</div>

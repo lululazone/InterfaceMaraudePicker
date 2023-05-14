@@ -5,13 +5,12 @@ import {
   TuiAlertModule,
   TUI_SANITIZER,
   TuiButtonModule,
-  TuiDropdownModule
+  TuiDropdownModule, TuiExpandModule
 } from "@taiga-ui/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {TuiLinkModule} from '@taiga-ui/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FicheContactComponent } from './fiche-contact/fiche-contact.component';
@@ -21,9 +20,10 @@ import {TuiElementModule, TuiForModule} from "@taiga-ui/cdk";
 import {TuiTablePaginationModule} from "@taiga-ui/addon-table";
 import { ItemComponent } from './item/item.component';
 import {
+  TuiElasticContainerModule,
   TuiInputCountModule,
   TuiInputModule,
-  TuiInputPasswordModule,
+  TuiInputPasswordModule, TuiInputPhoneModule,
   TuiPaginationModule,
   TuiSelectModule
 } from "@taiga-ui/kit";
@@ -36,7 +36,10 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
-import {ReactiveFormsModule} from "@angular/forms";
+
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {MailService} from "./services/mail.service";
 
 
 @NgModule({
@@ -68,11 +71,18 @@ import {ReactiveFormsModule} from "@angular/forms";
     TuiPaginationModule,
     TuiInputPasswordModule,
     TuiInputModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    TuiInputPhoneModule,
+    TuiElasticContainerModule,
+    TuiExpandModule,
+    FormsModule,
+    HttpClientModule
   ],
 
-  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
+
+
+
+  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},MailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
