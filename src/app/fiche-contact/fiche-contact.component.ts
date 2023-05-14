@@ -3,6 +3,8 @@ import {ItemListService} from "../services/item-list.service";
 import {tuiArrayRemove} from "@taiga-ui/cdk";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Email, MailService} from "../services/mail.service";
+import {ClientService} from "../services/client.service";
+import {IClient} from "../models/client";
 
 @Component({
   selector: 'app-fiche-contact',
@@ -15,7 +17,7 @@ export class FicheContactComponent implements OnInit {
   FormData: any;
 
 
-  constructor(private itemListService: ItemListService,private mail: MailService,private builder: FormBuilder) { }
+  constructor(private itemListService: ItemListService,private mail: MailService,private builder: FormBuilder,private client: ClientService) { }
   selecteditemList: any;
   items : Array<{nom: string, qte:any}> = [];
 
@@ -33,6 +35,16 @@ export class FicheContactComponent implements OnInit {
     subject: "Liste d'aliments et de produit d'hygiène",
     message: ''
   };
+
+  clientId: IClient = {
+    coordonnees: {
+      firstname: '',
+      lastname: '',
+      mail: '',
+      tel: '',
+    },
+    items:[]
+  }
 
 
 
@@ -58,9 +70,15 @@ export class FicheContactComponent implements OnInit {
     this.email.message += "Telephone: "+this.phoneNumber+'\n';
     this.email.message += "Nom: "+this.name+'\n';
     this.email.message += "Email: "+this.mailSender+'\n';
+    this.clientId.coordonnees.firstname="";
+    this.clientId.coordonnees.lastname=this.name;
+    this.clientId.coordonnees.tel=this.phoneNumber;
+    this.clientId.coordonnees.mail=this.mailSender;
     this.items.forEach((item: { qte: any; nom: any; }) => {
       this.email.message += `- ${item.qte} x ${item.nom}\n`;
+      this.clientId.items.push({ nom: item.nom, quantite: item.qte, state: false, url: "",});
     });
+    this.client.create(this.clientId);
     this.mail.sendEmail(this.email)
       .subscribe(
         response => this.isSend=true,

@@ -39,7 +39,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 // import { PageAdminComponent } from './page-admin/page-admin.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { FormsModule } from "@angular/forms";
 import { UpdateUserComponent } from './update-user/update-user.component';
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -54,15 +53,10 @@ import {MailService} from "./services/mail.service";
     HeaderComponent,
     MainComponentComponent,
     ItemComponent,
-<<<<<<< HEAD
-    LoginPageComponent
-=======
-    LoginComponent,
     LoginPageComponent,
     // PageAdminComponent,
     AdminPageComponent,
     UpdateUserComponent
->>>>>>> origin/admin
   ],
   imports: [
     BrowserModule,
@@ -83,7 +77,6 @@ import {MailService} from "./services/mail.service";
     TuiSelectModule,
     TuiInputCountModule,
     TuiPaginationModule,
-<<<<<<< HEAD
     TuiInputPasswordModule,
     TuiInputModule,
     ReactiveFormsModule,
@@ -91,11 +84,10 @@ import {MailService} from "./services/mail.service";
     TuiElasticContainerModule,
     TuiExpandModule,
     FormsModule,
-    HttpClientModule
-=======
+    HttpClientModule,
     TuiTableModule,
     FormsModule
->>>>>>> origin/admin
+
   ],
 
 
