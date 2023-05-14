@@ -1,4 +1,5 @@
-<table>    
+<div class="container">
+  <table>    
     <thead>
         <tr>
             <th>Nom</th>
@@ -9,10 +10,100 @@
     </thead>
     <tbody>
         <tr *ngFor="let client of clients; let index = index">
-            <td>{{ index+1 }}. {{ client.nom }} </td>    
-            <td>{{ client.email }}</td>
-            <td>{{ client.tel }}</td>
-            <td><p *ngFor="let item of client.items">{{ item }}</p></td>
+          <td>{{ index + 1 }}. {{ client.nom }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.tel }}</td>
+          <td>
+            <ng-container *ngFor="let item of client.items; let i = index">
+              <tr>
+                <td>{{ item.nom }}</td>
+                <td>Quantité: {{ item.quantity }}</td>
+                <td *ngIf="item.state">Archivé</td>
+                <td *ngIf="!item.state"><button (click)="updateStatus(client, i)" [disabled]="item.state">Archiver</button></td>
+              </tr>
+            </ng-container>
+          </td>
         </tr>
-    </tbody>
-</table>
+      </tbody>
+  </table>
+
+  <br/>
+
+  <div class="mycontainer">
+    <input [(ngModel)]="numero" placeholder="Numéro">
+    <button (click)="displayUpdateComponent()">Afficher l'enfant</button>
+  
+    <div *ngIf="displayComponent" class="update-component">
+      <app-update-user [numero]="numero" (close)="handleClose($event)"></app-update-user>
+    </div>  
+  </div>
+
+  <br />
+
+  
+
+  <div class="left">
+    <h3>Hygiène</h3>
+  <table>    
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>image</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let article of hygiene; let index = index">
+          <td>{{ index + 1 }}. {{ article.nom }}</td>
+          <td>{{ article.image }}</td>
+        </tr>
+      </tbody>
+  </table>
+  <form (ngSubmit)="hygieneOnSubmit()" class="container">  
+    <div>
+      <label for="nom">Nom:</label>
+      <input type="text" id="nom" [(ngModel)]="newArticleHygiene.nom" name="nom">
+    </div>
+
+    <div>
+      <label for="image">Image:</label>
+      <input type="text" id="image" [(ngModel)]="newArticleHygiene.image" name="image">
+    </div>
+    
+    <button type="submit">Ajouter</button>
+  </form>
+  </div>
+
+  <div class="right">
+    <h3>Alimentaire</h3>
+    <table>    
+      <thead>
+          <tr>
+              <th>Nom</th>
+              <th>image</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let article of alimentaire; let index = index">
+            <td>{{ index + 1 }}. {{ article.nom }}</td>
+            <td>{{ article.image }}</td>
+          </tr>
+        </tbody>
+    </table>
+    <form (ngSubmit)="alimentaireOnSubmit()" class="container">  
+      <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" [(ngModel)]="newArticleAlimentaire.nom" name="nom">
+      </div>
+  
+      <div>
+        <label for="image">Image:</label>
+        <input type="text" id="image" [(ngModel)]="newArticleAlimentaire.image" name="image">
+      </div>
+      
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>
+  
+</div>
+
+

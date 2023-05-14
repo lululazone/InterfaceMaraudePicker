@@ -34,6 +34,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 // import { PageAdminComponent } from './page-admin/page-admin.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { FormsModule } from "@angular/forms";
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     LoginComponent,
     LoginPageComponent,
     // PageAdminComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     TuiInputCountModule,
     TuiPaginationModule,
     TuiTableModule,
+    FormsModule
   ],
 
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],

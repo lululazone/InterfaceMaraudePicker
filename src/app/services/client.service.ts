@@ -28,7 +28,19 @@ export class ClientService {
     });
   }
 
+  update(client: any){
+    const clientNumber = client.tel;
+    let clientRef = this.db.object(`Clients/${clientNumber}/coordonnees`);
+    clientRef.set(client);
+  }
+
   delete(clientNumber: string){
     this.db.list(`Clients`).remove(clientNumber);
   }
+
+  updateArticleState(clientNumber: string, articleId: number, state: boolean){
+    let clientRef = this.db.object(`Clients/${clientNumber}/items/${articleId}/state`);
+    clientRef.set(state);
+  }
+  
 }

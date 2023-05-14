@@ -8,6 +8,7 @@ export interface IClient {
     items: { 
         nom: string,
         quantite: number,
-        url: string
+        url: string,
+        state: boolean
     }[];
 }
