@@ -31,7 +31,7 @@
 
   <div class="mycontainer">
     <input [(ngModel)]="numero" placeholder="Numéro">
-    <button (click)="displayUpdateComponent()">Afficher l'enfant</button>
+    <button (click)="displayUpdateComponent()">Update l'utilisateur</button>
   
     <div *ngIf="displayComponent" class="update-component">
       <app-update-user [numero]="numero" (close)="handleClose($event)"></app-update-user>
